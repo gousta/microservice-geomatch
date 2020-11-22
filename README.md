@@ -2,6 +2,7 @@
 
 ### Install
 Run `npm install` from project root
+Run `cp .env.example .env` to create your own local .env and fill in the details
 
 ### Development
 Run `npm run dev`
