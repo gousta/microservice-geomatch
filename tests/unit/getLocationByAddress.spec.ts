@@ -1,41 +1,24 @@
-// import {getLocationByAddress} from '../../app/services/geomatch';
+import { getLocationByAddress } from '../../app/services/geomatch';
 
-// const PAYLOAD_VALID: string = 'White Bear Yard';
-
-// const PAYLOAD_INVALID: unknown = {
-//   'lat': 0,
-//   'lng': 0,
-// };
-
-// const PAYLOAD_EMPTY: unknown = {};
-
-// const PAYLOAD_NULL: unknown = null;
+const PAYLOAD_VALID: string = 'White Bear Yard';
+const PAYLOAD_INVALID: string = '84u2j0fj0iuj0esdsfφκδφλφ';
 
 describe('getLocationByAddress', () => {
 
-  test('test', () => {
-    expect(200).toBe(200);
+  test('Valid', async () => {
+    const location = await getLocationByAddress(PAYLOAD_VALID);
+
+    expect(location).toHaveProperty('lat');
+    expect(location).toHaveProperty('lng');
+    expect(location).toHaveProperty('postcode');
+    expect(location).toHaveProperty('address1');
+    expect(location).toHaveProperty('address2');
   });
 
-  // test('Valid', () => {
-  //   const district = getLocationByAddress(PAYLOAD_VALID);
-  //   expect(district).toHaveProperty('serviceArea');
-  //   expect(district?.serviceArea).toBe('LONCENTRAL');
-  // });
+  test('Invalid', async () => {
+    const location = await getLocationByAddress(PAYLOAD_INVALID);
 
-  // test('Invalid', () => {
-  //   const district = getLocationByAddress(PAYLOAD_INVALID as Location);
-  //   expect(district).toBe(null);
-  // });
-
-  // test('Empty', () => {
-  //   const district = getLocationByAddress(PAYLOAD_EMPTY as Location);
-  //   expect(district).toBe(null);
-  // });
-
-  // test('Null', () => {
-  //   const district = getLocationByAddress(PAYLOAD_NULL as Location);
-  //   expect(district).toBe(null);
-  // });
+    expect(location).toBe(null);
+  });
 
 });
