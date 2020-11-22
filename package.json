@@ -14,9 +14,6 @@
     "lint-diff": "git diff --name-only --cached --relative | grep \\\\.ts$ | xargs eslint",
     "lint-fix": "eslint \"**/*.ts\" --fix",
     "outdated": "npm outdated --depth 0",
-    "postinstall": "npm run build",
-    "prestart": "npm run lint",
-    "pretest": "npm run lint",
     "cover": "npm run test-basic -- --coverage",
     "test": "npm run test-basic -- --runInBand",
     "test-basic": "NODE_ENV=testing jest --forceExit --detectOpenHandles --verbose",
@@ -98,11 +95,5 @@
     "ts-jest": "^26.4.4",
     "ts-node-dev": "1.0.0-pre.44",
     "tslint": "^6.0.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint",
-      "pre-push": "npm test"
-    }
   }
 }
