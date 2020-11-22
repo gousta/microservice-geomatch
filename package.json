@@ -59,6 +59,7 @@
   "dependencies": {
     "@googlemaps/google-maps-services-js": "^3.1.13",
     "@turf/turf": "^5.1.6",
+    "axios": "^0.21.0",
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "express": "^4.16.2",
@@ -66,6 +67,7 @@
     "winston": "^3.3.3"
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/babel-core": "^6.25.6",
     "@types/babel-traverse": "^6.25.5",
     "@types/bluebird": "^3.5.27",
