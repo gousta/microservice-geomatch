@@ -1,5 +1,9 @@
 version: "3"
 
+volumes:
+  redis_data:
+    driver: local
+
 services:
   app:
     build:
@@ -10,3 +14,12 @@ services:
       - .:/home/node/app
     ports:
       - "8081:8080"
+
+  redis:
+    image: redis:6.0
+    container_name: msgeo_redis
+    command: --appendonly yes
+    volumes:
+      - redis_data:/data
+    ports:
+      - "25555:6379"

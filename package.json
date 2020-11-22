@@ -43,6 +43,8 @@
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "express": "^4.16.2",
+    "handy-redis": "^2.0.2",
+    "redis": "^3.0.2",
     "typescript": "^3.8.2",
     "winston": "^3.3.3"
   },
