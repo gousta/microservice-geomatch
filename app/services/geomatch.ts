@@ -1,5 +1,5 @@
-import GoogleMapsDriver from '../drivers/googlemaps';
-import PolygonDriver from '../drivers/polygonLookup';
+import * as GoogleMapsDriver from '../providers/googlemaps';
+import * as PolygonDriver from '../providers/polygonLookup';
 import { District, Location } from '../../types/geomatch';
 import cache from './cache';
 
@@ -32,5 +32,5 @@ export async function getDistrictByAddress(address: string): Promise<District | 
     return district;
   }
 
-  return Promise.resolve(null);
+  return null;
 }

@@ -1,4 +1,4 @@
-import redis from '../drivers/redis';
+import redis from '../providers/redis';
 
 const cache = redis;
 

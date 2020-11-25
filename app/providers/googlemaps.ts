@@ -2,7 +2,7 @@ import { Client, GeocodeResponse } from '@googlemaps/google-maps-services-js';
 import config from '../../config';
 import { Location } from '../../types/geomatch';
 
-export const key = config.googlemaps.apiKey as string;
+export const key = config.googlemaps.apiKey;
 
 const client = new Client({
   config: {
@@ -41,5 +41,3 @@ export async function getLocationByAddress(address: string): Promise<Location | 
 
   return null;
 }
-
-export default { getLocationByAddress };

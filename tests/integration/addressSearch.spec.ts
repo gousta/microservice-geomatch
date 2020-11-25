@@ -30,70 +30,60 @@ const PAYLOAD_BADREQUEST = {
 describe('Geomatch', () => {
   describe('/address-search GET', () => {
 
-    test('valid address', (done: jest.DoneCallback) => {
+    test('valid address', async (done: jest.DoneCallback) => {
+      const res: request.Response = await request(app).get('/address-search').query({ address: PAYLOAD_VALID.search });
 
-      request(app)
-        .get('/address-search')
-        .query({ address: PAYLOAD_VALID.search })
-        .then((res: request.Response) => {
-          expect(res.status).toBe(200);
-          expect(res.body).toHaveProperty('status');
-          expect(res.body).toHaveProperty('search');
+      expect(res.status).toBe(200);
+      expect(res.body).toHaveProperty('status');
+      expect(res.body).toHaveProperty('search');
 
-          expect(res.body.location).toHaveProperty('serviceArea');
-          expect(res.body.location).toHaveProperty('postcode');
-          expect(res.body.location).toHaveProperty('address1');
-          expect(res.body.location).toHaveProperty('address2');
-          expect(res.body.location).toHaveProperty('city');
-          expect(res.body.location).toHaveProperty('lat');
-          expect(res.body.location).toHaveProperty('lng');
+      expect(res.body.location).toHaveProperty('serviceArea');
+      expect(res.body.location).toHaveProperty('postcode');
+      expect(res.body.location).toHaveProperty('address1');
+      expect(res.body.location).toHaveProperty('address2');
+      expect(res.body.location).toHaveProperty('city');
+      expect(res.body.location).toHaveProperty('lat');
+      expect(res.body.location).toHaveProperty('lng');
 
-          expect(res.body.status).toBe(PAYLOAD_VALID.status);
-          expect(res.body.search).toBe(PAYLOAD_VALID.search);
-          expect(res.body.location.serviceArea).toBe(PAYLOAD_VALID.location.serviceArea);
-          expect(res.body.location.postcode).toBe(PAYLOAD_VALID.location.postcode);
-          expect(res.body.location.address1).toBe(PAYLOAD_VALID.location.address1);
-          expect(res.body.location.address2).toBe(PAYLOAD_VALID.location.address2);
-          expect(res.body.location.city).toBe(PAYLOAD_VALID.location.city);
-          expect(res.body.location.lat).toBe(PAYLOAD_VALID.location.lat);
-          expect(res.body.location.lng).toBe(PAYLOAD_VALID.location.lng);
+      expect(res.body.status).toBe(PAYLOAD_VALID.status);
+      expect(res.body.search).toBe(PAYLOAD_VALID.search);
+      expect(res.body.location.serviceArea).toBe(PAYLOAD_VALID.location.serviceArea);
+      expect(res.body.location.postcode).toBe(PAYLOAD_VALID.location.postcode);
+      expect(res.body.location.address1).toBe(PAYLOAD_VALID.location.address1);
+      expect(res.body.location.address2).toBe(PAYLOAD_VALID.location.address2);
+      expect(res.body.location.city).toBe(PAYLOAD_VALID.location.city);
+      expect(res.body.location.lat).toBe(PAYLOAD_VALID.location.lat);
+      expect(res.body.location.lng).toBe(PAYLOAD_VALID.location.lng);
 
-          done();
-        });
+      done();
     });
 
-    test('gibberish address', (done: jest.DoneCallback) => {
-      request(app)
-        .get('/address-search')
-        .query({ address: PAYLOAD_NOTFOUND.search })
-        .then((res: request.Response) => {
-          expect(res.status).toBe(404);
-          expect(res.body).toHaveProperty('status');
-          expect(res.body).toHaveProperty('search');
+    test('gibberish address', async (done: jest.DoneCallback) => {
+      const res: request.Response = await request(app).get('/address-search').query({ address: PAYLOAD_NOTFOUND.search });
 
-          expect(res.body.status).toBe(PAYLOAD_NOTFOUND.status);
-          expect(res.body.search).toBe(PAYLOAD_NOTFOUND.search);
+      expect(res.status).toBe(404);
+      expect(res.body).toHaveProperty('status');
+      expect(res.body).toHaveProperty('search');
 
-          done();
-        });
+      expect(res.body.status).toBe(PAYLOAD_NOTFOUND.status);
+      expect(res.body.search).toBe(PAYLOAD_NOTFOUND.search);
+
+      done();
     });
 
-    test('empty address', (done: jest.DoneCallback) => {
-      request(app)
-        .get('/address-search')
-        .query({ address: PAYLOAD_BADREQUEST.search })
-        .then((res: request.Response) => {
-          expect(res.status).toBe(400);
-          expect(res.body).toHaveProperty('status');
-          expect(res.body).toHaveProperty('search');
-          expect(res.body).toHaveProperty('error');
+    test('empty address', async (done: jest.DoneCallback) => {
+      const res: request.Response = await request(app).get('/address-search').query({ address: PAYLOAD_BADREQUEST.search });
 
-          expect(res.body.status).toBe(PAYLOAD_BADREQUEST.status);
-          expect(res.body.search).toBe(PAYLOAD_BADREQUEST.search);
-          expect(res.body.error).toBe(PAYLOAD_BADREQUEST.error);
+      expect(res.status).toBe(400);
+      expect(res.body).toHaveProperty('status');
+      expect(res.body).toHaveProperty('search');
+      expect(res.body).toHaveProperty('error');
 
-          done();
-        });
+      expect(res.body.status).toBe(PAYLOAD_BADREQUEST.status);
+      expect(res.body.search).toBe(PAYLOAD_BADREQUEST.search);
+      expect(res.body.error).toBe(PAYLOAD_BADREQUEST.error);
+
+      done();
     });
 
   });
